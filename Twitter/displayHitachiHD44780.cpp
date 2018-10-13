@@ -217,6 +217,8 @@ displayHitachiHD44780::lcdSetCursorPosition(const cursorPosition pos)
 
 }
 
+
+
 cursorPosition
 displayHitachiHD44780::lcdGetCursorPosition()
 {

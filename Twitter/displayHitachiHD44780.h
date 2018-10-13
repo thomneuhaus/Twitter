@@ -2,6 +2,8 @@
 #include "basicLCD.h"
 #include "LCDconnect.h"
 
+using namespace std;
+
 #define LCD_NUMBER		3	
 #define FIRST_LINE		0
 #define SECOND_LINE		1

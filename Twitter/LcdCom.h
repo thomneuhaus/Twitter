@@ -16,8 +16,8 @@ typedef struct
 }TWIT;
 
 // Indica cantidad de twits descargados
-bool downloadingTwits(basicLCD* lcd, string account, int twitplace);
+//bool downloadingTwits(basicLCD* lcd, string account, int twitplace);
 
 //Muestra un twit
 
-bool showTwit(basicLCD* lcd, TWIT*twit);
+//bool showTwit(basicLCD* lcd, TWIT*twit);
