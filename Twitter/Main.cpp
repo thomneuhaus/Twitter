@@ -7,7 +7,7 @@
 #include "displayHitachiHD44780.h"
 
 #define  DEFAULT_TWEET_QUANTITY	15
-#define MAX_TIME	1 //(EN SEGUNDOS!!)
+
 
 
 
