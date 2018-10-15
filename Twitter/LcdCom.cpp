@@ -5,7 +5,7 @@
 //notas para considerar : convendria hacer estaws funciones en formato de clase cosa de que almacenen el lcd, la posicion del cursor
 //y otras cosas necesarias como dato miembro;
 
-//
+
 //bool downloadingTwits(basicLCD* lcd, string account, int twitplace)
 //{
 //
@@ -13,7 +13,7 @@
 //	bool error = (*lcd).lcdClear();
 //	//checkeo de errores?
 //
-//	string actual = "Twits descargados = " + to_string(twitplace);
+//	string actual = "Twits = " + to_string(twitplace);
 //	char* cuenta = (char*)account.c_str();
 //	char* number = (char*)actual.c_str();
 //	int size = (int)strlen(cuenta);
@@ -58,6 +58,7 @@
 //	}
 //	return true; //checkeo de errores?
 //}
+
 ////bool showTwit(basicLCD* lcd,TWIT*twit)
 ////{
 ////	cursorPosition pos;

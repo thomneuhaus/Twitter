@@ -42,6 +42,9 @@
     <ClInclude Include="curses.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="LcdPrinter.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Twitcom.cpp">
@@ -63,6 +66,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="eventHandler.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="LcdPrinter.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
