@@ -6,32 +6,42 @@
 #include "Twitcom.h"
 #include "displayHitachiHD44780.h"
 #include "eventHandler.h" 
+extern "C"
+{
+#include "parse.h"
+}
+
+int callback(char *key, char *value, void *UserData);
+
 #define  DEFAULT_TWEET_QUANTITY	15
-#define	 SPEED_DEFAULT 3
-#define  SPEED_MAX	1
+#define	 SPEED_DEFAULT 0
+#define  SPEED_MAX	0
 #define  SPEED_MIN  6
 
 
 using namespace std;
 
+typedef struct
+{
+	string user;
+	unsigned int cantTweets;
+}arguments;
+
 int main(int argc, char* argv[])
 {
-	// (0)progrma.exe (1)-usuario  (2)lanacion (3)-cantidadTweets (4)5
-	//string usuario(argv[2]);//Esto deberia ser con un parser para que quede un poco mas lindo
-	string usuario = "realDonaldTrump";
-	unsigned int cantTweets = 20;
-	//unsigned int cantTweets = (unsigned int) atoi(argv[4]);
-	//Contemplar si el numero es 0, es decir, que no quiere imprimir ningun tweet, caso 1.b
-	if (cantTweets == 0)
+	arguments argumentosEntrada;
+	int error = parseCmdLine(argc, argv, callback, &argumentosEntrada);
+
+	if (argumentosEntrada.cantTweets == 0)
 	{
-		cantTweets = DEFAULT_TWEET_QUANTITY; // default tweet size si no se recibio por linea de comando
+		argumentosEntrada.cantTweets = DEFAULT_TWEET_QUANTITY; // default tweet size si no se recibio por linea de comando
 
 	}
 
 	displayHitachiHD44780 lcd;
 	basicLCD * lcdPointer = &lcd;
 
-	Twitcom Twitter(usuario, cantTweets, lcdPointer);
+	Twitcom Twitter(argumentosEntrada.user, argumentosEntrada.cantTweets, lcdPointer);
 
 	if (Twitter.isError() == true)
 	{
@@ -92,7 +102,7 @@ int main(int argc, char* argv[])
 						break;
 
 					case NEXT:
-						if (tweetNumber >= cantTweets);
+						if (tweetNumber >= argumentosEntrada.cantTweets);
 						else
 						{
 							tweetNumber++;
@@ -115,10 +125,37 @@ int main(int argc, char* argv[])
 				}
 
 			}
+			Twitter.clearScreen();
 			
 		}
 
 	}
 	
 	return 0;
+}
+
+int callback(char *key, char *value, void *UserData)
+{
+	arguments * data = (arguments *)UserData;
+	int result = 0; //variable para detectar error
+
+	if (key != NULL)	//evaluo las claves
+	{
+		if (str_cmp(key, "user"))
+		{
+			string userAux(value);
+			data->user = userAux;
+			result = 1;
+		}
+		else if (str_cmp(key, "cant"))
+		{
+			data->cantTweets = (unsigned int)atoi(value);
+			result = 1;
+		}
+	}
+	else
+	{
+		return 0;
+	}
+	return result;
 }

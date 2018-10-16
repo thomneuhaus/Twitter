@@ -180,6 +180,11 @@ string Twitcom::getDate(unsigned int numberTweet)
 	return dates[numberTweets];
 }
 
+void Twitcom::clearScreen(void)
+{
+	lcd->lcdClear();
+}
+
 void Twitcom::showTweet(unsigned int numberTweet)
 {
 	if (scrollPosition > tweets[numberTweet].length())

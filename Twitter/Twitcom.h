@@ -32,7 +32,7 @@ public:
 	void loadTweets(void);
 	string getTweet(unsigned int numberTweet);
 	string getDate(unsigned int numberTweet);
-
+	void clearScreen(void);
 	void showTweet(unsigned int numberTweet);
 
 	unsigned int scrollPosition;
