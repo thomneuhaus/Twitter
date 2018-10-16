@@ -39,8 +39,8 @@ FT_HANDLE * LCDConnect::init_ftdi_lcd(int iDevice)
 
 	while (status != FT_OK && ((current - start) < MaxTime))
 	{
-		status = FT_OpenEx((void *)lcdDescriptionC, FT_OPEN_BY_DESCRIPTION, &lcdHandle);
-
+		//status = FT_OpenEx((void *)lcdDescriptionC, FT_OPEN_BY_DESCRIPTION, &lcdHandle);
+		status = FT_Open(1, &lcdHandle);
 		if (status == FT_OK)
 		{
 			cout << "Se ha podidio conectar el LCD" << endl;

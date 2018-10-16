@@ -1,7 +1,8 @@
 #pragma once
 #include <ctime>
+#include <conio.h>
 #include "curses.h"
-#define MAX_TIME	1 //(EN SEGUNDOS!!)
+#define MAX_TIME	6 //(EN SEGUNDOS!!)
 typedef enum 
 {
 	SPEED_UP,

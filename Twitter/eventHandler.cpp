@@ -3,11 +3,11 @@
 
 
 
+
+
 eventHandler::eventHandler()
 {
 	time(&init);
-	winTest = NULL;
-	error = NO_ERROR_T;
 }
 
 
@@ -24,8 +24,9 @@ eventHandler::getEvent(unsigned int max_time)
 	{
 		event = SCROLL_TIME;
 	}
-	else if (checkKeyEvent())
+	else if (_kbhit())	
 	{
+		key = getchar();
 		event = getKeyEvent();
 	}
 	else 
@@ -53,21 +54,16 @@ bool
 eventHandler::checkKeyEvent()
 {
 	bool result = false;
-	winTest = initscr();
-	if (winTest == NULL)
-	{
-		error = WINDOW_ERROR;
-	}
-	else
+	if(error != WINDOW_ERROR)
 	{
 		nodelay(winTest, TRUE);
 		noecho();
-		key = getch();
+		key = getchar();
 		if (key != ERR)
 		{
 			result = true;
 		}
-		endwin();
+		
 	}
 	
 	return result;
@@ -82,7 +78,7 @@ eventHandler::geterror()
 EVENT
 eventHandler::getKeyEvent()
 {
-	EVENT action;
+	EVENT action =	NO_EVENT;
 	switch (key)
 			{
 				case '+':

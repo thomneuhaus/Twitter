@@ -18,8 +18,8 @@ int main(int argc, char* argv[])
 {
 	// (0)progrma.exe (1)-usuario  (2)lanacion (3)-cantidadTweets (4)5
 	//string usuario(argv[2]);//Esto deberia ser con un parser para que quede un poco mas lindo
-	string usuario = "lanacion";
-	unsigned int cantTweets = 5;
+	string usuario = "realDonaldTrump";
+	unsigned int cantTweets = 20;
 	//unsigned int cantTweets = (unsigned int) atoi(argv[4]);
 	//Contemplar si el numero es 0, es decir, que no quiere imprimir ningun tweet, caso 1.b
 	if (cantTweets == 0)
@@ -32,6 +32,7 @@ int main(int argc, char* argv[])
 	basicLCD * lcdPointer = &lcd;
 
 	Twitcom Twitter(usuario, cantTweets, lcdPointer);
+
 	if (Twitter.isError() == true)
 	{
 		error_t errorConnect = Twitter.getError();
@@ -62,18 +63,18 @@ int main(int argc, char* argv[])
 					switch (evInput)
 					{
 					case SPEED_UP:
-						if ((speedScroll + 1) > SPEED_MAX);
-						else
+						if ((speedScroll - 1) < SPEED_MIN)
 						{
-							speedScroll++;
+							speedScroll--;
+							cout << speedScroll << endl;
 						}
 						break;
 
 					case SPEED_DOWN:
-						if ((speedScroll - 1) < SPEED_MAX);
-						else
+						if ((speedScroll + 1) > SPEED_MAX)
 						{
-							speedScroll--;
+							speedScroll++;
+							cout << speedScroll << endl;
 						}
 						break;
 
