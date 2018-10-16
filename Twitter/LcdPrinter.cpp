@@ -2,15 +2,23 @@
 
 
 
-LcdPrinter::LcdPrinter(basicLCD* lcd,string cuenta)
+LcdPrinter::LcdPrinter(void)
+{
+}
+
+void LcdPrinter::setDisplay(basicLCD * lcd)
 {
 	display = lcd;
+}
+
+void LcdPrinter::setAccount(string account)
+{
 	string animations = "Downloading";
-	char* account = (char*)cuenta.c_str();
+	char* cuenta = (char*)account.c_str();
 	char* animation = (char*)animations.c_str();
 	action = 0;
 	nameplace = 0;
-	aux = account;
+	aux = cuenta;
 	aux2 = animation;
 }
 
@@ -78,4 +86,19 @@ LcdPrinter::downloadingTwits()
 	}
 
 	return true; //checkeo de errores?
+}
+
+void LcdPrinter::printTweets(string date, string tweet)
+{
+		// Me paro en la primera linea, primera columna
+		pos.row = FIRST_LINE;
+		pos.column = FIRST_COLUMN;
+		display->lcdSetCursorPosition(pos);
+		(*display) << (unsigned char *)date.c_str();
+
+		// Me paro en la segunda linea, primera columna
+		pos.row = SECOND_LINE;
+		pos.column = FIRST_COLUMN;
+		display->lcdSetCursorPosition(pos);
+		(*display) << (unsigned char *)tweet.c_str();
 }

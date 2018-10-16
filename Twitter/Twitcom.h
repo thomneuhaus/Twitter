@@ -1,5 +1,7 @@
 #pragma once
 #include "json.hpp"
+#include "displayHitachiHD44780.h"
+#include "LcdPrinter.h"
 #include <curl/curl.h>
 #include <iostream>
 
@@ -26,10 +28,14 @@ typedef struct
 class Twitcom
 {
 public:
-	Twitcom(string account, unsigned int cantTweets);
+	Twitcom(string account, unsigned int cantTweets, basicLCD *lcdPointer);
 	void loadTweets(void);
 	string getTweet(unsigned int numberTweet);
 	string getDate(unsigned int numberTweet);
+
+	void showTweet(unsigned int numberTweet);
+
+	unsigned int scrollPosition;
 
 	bool isError(void);
 	error_t getError(void);
@@ -60,6 +66,8 @@ private:
 	vector<string> tweets;
 	vector<string> dates;
 
+	basicLCD * lcd;
 
+	LcdPrinter print;
 };
 

@@ -7,7 +7,7 @@ eventHandler::eventHandler()
 {
 	time(&init);
 	winTest = NULL;
-	error = NO_ERROR;
+	error = NO_ERROR_T;
 }
 
 
@@ -17,10 +17,10 @@ eventHandler::~eventHandler()
 
 
 EVENT
-eventHandler::getEvent()
+eventHandler::getEvent(unsigned int max_time)
 {
 	EVENT event;
-	if (checkTimerEvent())
+	if (checkTimerEvent(max_time))
 	{
 		event = SCROLL_TIME;
 	}
@@ -36,12 +36,12 @@ eventHandler::getEvent()
 }
 
 bool 
-eventHandler::checkTimerEvent()
+eventHandler::checkTimerEvent(unsigned int max_time)
 {
 	bool result = false;
 	time(&curr);								// se obtiene la hora actual 
 	double time_difference = difftime(curr, init); // calcula diferencia de tiempo (en segundos) entre curr e init
-	if (time_difference > MAX_TIME)
+	if (time_difference > max_time)
 	{
 		result = true; // se indica que se debe scrollear la pantalla
 		time(&init); // se actualiza el nuevo tiempo de inicio
@@ -73,7 +73,7 @@ eventHandler::checkKeyEvent()
 	return result;
 }
 
-ERROR
+ERROR_T
 eventHandler::geterror()
 {
 	return error;

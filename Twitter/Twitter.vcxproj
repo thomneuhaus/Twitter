@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>C:\Users\TR\Downloads\curl-master\builds\libcurl-vc-x64-release-dll-ipv6-sspi-winssl\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\TR\source\repos\Twitter\ftdi\amd64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -86,8 +86,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\TR\Downloads\curl-master\builds\libcurl-vc-x64-release-dll-ipv6-sspi-winssl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\TR\source\repos\Twitter\ftdi;C:\Users\TR\source\repos\Twitter\Twitter\curl-master\builds\libcurl-vc-x64-release-dll-ipv6-sspi-winssl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Users\TR\source\repos\Twitter\Twitter\curl-master\builds\libcurl-vc-x64-release-dll-ipv6-sspi-winssl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcurl.lib;ftd2xx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

@@ -7,9 +7,16 @@
 class LcdPrinter
 {
 public:
-	LcdPrinter(basicLCD * lcd, string account);
+	LcdPrinter(void);
 	~LcdPrinter();
+
+	void setDisplay(basicLCD * lcd);
+	void setAccount(string account);
+
 	bool downloadingTwits();
+
+	void printTweets(string date, string tweet);
+
 private:	
 	basicLCD * display;
 	cursorPosition namepos;
@@ -21,5 +28,6 @@ private:
 	char* animation;
 	char* aux;
 	char* aux2;
+	cursorPosition pos;
 };
 

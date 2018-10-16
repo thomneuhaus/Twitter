@@ -1,9 +1,13 @@
 #include "Twitcom.h"
 
-Twitcom::Twitcom(string account, unsigned int cantTweets)
+Twitcom::Twitcom(string account, unsigned int cantTweets, basicLCD *lcdPointer)
 {
 	user = account;
 	numberTweets = cantTweets;
+	lcd = lcdPointer;
+	print.setAccount(account);
+	print.setDisplay(lcd);
+	scrollPosition = 0;
 	query = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + user + "&count=" + to_string(cantTweets);
 	API_key = "HCB39Q15wIoH61KIkY5faRDf6";
 	API_SecretKey = "7s8uvgQnJqjJDqA6JsLIFp90FcOaoR5Ic41LWyHOic0Ht3SRJ6";
@@ -137,7 +141,7 @@ void Twitcom::loadTweets(void)
 			curl_multi_perform(multiHandle, &stillRunning);
 
 			//Mientras tanto podemos hacer otras cosas
-			//Animacion cargando tweets...
+			print.downloadingTwits();
 		}
 
 		//Checkeamos errores
@@ -193,6 +197,16 @@ string Twitcom::getTweet(unsigned int numberTweet)
 string Twitcom::getDate(unsigned int numberTweet)
 {
 	return dates[numberTweets];
+}
+
+void Twitcom::showTweet(unsigned int numberTweet)
+{
+	if (scrollPosition > tweets[numberTweet].length())
+	{
+		scrollPosition = 0;
+	}
+	string tweet = tweets[numberTweet].substr(scrollPosition);
+	print.printTweets(dates[numberTweet], tweet);
 }
 
 

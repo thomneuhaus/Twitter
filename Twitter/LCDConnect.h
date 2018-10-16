@@ -59,7 +59,7 @@
 
 //********************	 LCD  *********************
 #define MY_LCD_DESCRIPTION	"EDA LCD "
-#define PORT_B				" B"			 
+#define PORT_B				" 6 B"			 
 //*************************************************
 
 #define CONNECTING_TIME 5 //in seconds

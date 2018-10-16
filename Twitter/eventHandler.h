@@ -17,24 +17,24 @@ typedef enum
 typedef enum
 {
 	WINDOW_ERROR,
-	NO_ERROR
-} ERROR;
+	NO_ERROR_T,
+} ERROR_T;
 
 class eventHandler
 {
 public:
 	eventHandler();
 	~eventHandler();
-	EVENT getEvent();
+	EVENT getEvent(unsigned int max_time);
 
 private:
-	bool checkTimerEvent();
+	bool checkTimerEvent(unsigned int max_time);
 	bool checkKeyEvent();
-	ERROR geterror();
+	ERROR_T geterror();
 	EVENT getKeyEvent();
 	time_t init, curr;
 	int key;
 	WINDOW * winTest;
-	ERROR error;
+	ERROR_T error;
 };
 
